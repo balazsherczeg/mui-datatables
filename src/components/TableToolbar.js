@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Popover from './Popover';
 import TableFilter from './TableFilter';
 import TableViewCol from './TableViewCol';
+import TablePagination from './TablePagination';
 import TableSearch from './TableSearch';
 import SearchIcon from '@material-ui/icons/Search';
 import DownloadIcon from '@material-ui/icons/CloudDownload';
@@ -64,6 +65,9 @@ export const defaultToolbarStyles = theme => ({
     display: 'inline-flex',
     marginTop: '10px',
     marginRight: '8px',
+  },
+  paginationWrapper: {
+    display: 'inline-block',
   },
   [theme.breakpoints.down('sm')]: {
     titleRoot: {},
@@ -289,6 +293,12 @@ class TableToolbar extends React.Component {
       title,
       components = {},
       updateFilterByType,
+
+      changePage,
+      changeRowsPerPage,
+      page,
+      rowCount,
+      rowsPerPage,
     } = this.props;
     const { icons = {} } = components;
 
@@ -454,6 +464,19 @@ class TableToolbar extends React.Component {
             />
           )}
           {options.customToolbar && options.customToolbar({ displayData: this.props.displayData })}
+          {options.paginationInHeader && (
+            <span className={classes.paginationWrapper}>
+              <TablePagination
+                count={rowCount}
+                page={page}
+                rowsPerPage={rowsPerPage}
+                changeRowsPerPage={changeRowsPerPage}
+                changePage={changePage}
+                component={'span'}
+                options={options}
+              />
+            </span>
+          )}
         </div>
       </Toolbar>
     );

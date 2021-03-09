@@ -211,6 +211,7 @@ class MUIDataTable extends React.Component {
       onTableInit: PropTypes.func,
       page: PropTypes.number,
       pagination: PropTypes.bool,
+      paginationInHeader: PropTypes.bool,
       print: PropTypes.oneOf([true, false, 'true', 'false', 'disabled']),
       searchProps: PropTypes.object,
       selectableRows: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['none', 'single', 'multiple'])]),
@@ -397,6 +398,7 @@ class MUIDataTable extends React.Component {
     fixedHeader: true,
     fixedSelectColumn: true,
     pagination: true,
+    paginationInHeader: false,
     print: true,
     resizableColumns: false,
     responsive: 'vertical',
@@ -1953,6 +1955,12 @@ class MUIDataTable extends React.Component {
               updateColumns={this.updateColumns}
               setTableAction={this.setTableAction}
               components={this.props.components}
+
+              changePage={this.changePage}
+              changeRowsPerPage={this.changeRowsPerPage}
+              page={page}
+              rowCount={rowCount}
+              rowsPerPage={rowsPerPage}
             />
           )}
         <TableFilterListComponent
@@ -1973,14 +1981,6 @@ class MUIDataTable extends React.Component {
           filterList={filterList}
           filterUpdate={this.filterUpdate}
           columnNames={columnNames}
-        />
-        <TableFooterComponent
-          options={this.options}
-          page={page}
-          rowCount={rowCount}
-          rowsPerPage={rowsPerPage}
-          changeRowsPerPage={this.changeRowsPerPage}
-          changePage={this.changePage}
         />
         <div style={{ position: 'relative', ...tableHeightVal }} className={responsiveClass}>
           {(this.options.resizableColumns === true ||

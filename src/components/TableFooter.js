@@ -1,5 +1,8 @@
 import React from 'react';
 import MuiTable from '@material-ui/core/Table';
+import MuiTableCell from '@material-ui/core/TableCell';
+import MuiTableRow from '@material-ui/core/TableRow';
+import MuiTableFooter from '@material-ui/core/TableFooter';
 import TablePagination from './TablePagination';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -10,6 +13,9 @@ const useStyles = makeStyles(
       '@media print': {
         display: 'none',
       },
+    },
+    tableCellContainer: {
+      padding: '0px 24px 0px 24px',
     },
   }),
   { name: 'MUIDataTableFooter' },
@@ -37,15 +43,21 @@ const TableFooter = ({ options, rowCount, page, rowsPerPage, changeRowsPerPage, 
   if (pagination) {
     return (
       <MuiTable className={classes.root}>
-        <TablePagination
-          count={rowCount}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          changeRowsPerPage={changeRowsPerPage}
-          changePage={changePage}
-          component={'div'}
-          options={options}
-        />
+        <MuiTableFooter>
+          <MuiTableRow>
+            <MuiTableCell colSpan="1000" className={classes.tableCellContainer}>
+              <TablePagination
+                count={rowCount}
+                page={page}
+                rowsPerPage={rowsPerPage}
+                changeRowsPerPage={changeRowsPerPage}
+                changePage={changePage}
+                component={'div'}
+                options={options}
+              />
+            </MuiTableCell>
+          </MuiTableRow>
+        </MuiTableFooter>
       </MuiTable>
     );
   }
