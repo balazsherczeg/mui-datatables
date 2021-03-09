@@ -1974,6 +1974,14 @@ class MUIDataTable extends React.Component {
           filterUpdate={this.filterUpdate}
           columnNames={columnNames}
         />
+        <TableFooterComponent
+          options={this.options}
+          page={page}
+          rowCount={rowCount}
+          rowsPerPage={rowsPerPage}
+          changeRowsPerPage={this.changeRowsPerPage}
+          changePage={this.changePage}
+        />
         <div style={{ position: 'relative', ...tableHeightVal }} className={responsiveClass}>
           {(this.options.resizableColumns === true ||
             (this.options.resizableColumns && this.options.resizableColumns.enabled)) && (
@@ -2018,14 +2026,6 @@ class MUIDataTable extends React.Component {
                   tableId={this.options.tableId}
                   timers={this.timers}
                   components={this.props.components}
-                />
-                <TableFooterComponent
-                  options={this.options}
-                  page={page}
-                  rowCount={rowCount}
-                  rowsPerPage={rowsPerPage}
-                  changeRowsPerPage={this.changeRowsPerPage}
-                  changePage={this.changePage}
                 />
                 <TableBodyComponent
                   data={displayData}
