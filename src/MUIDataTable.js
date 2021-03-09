@@ -2019,6 +2019,14 @@ class MUIDataTable extends React.Component {
                   timers={this.timers}
                   components={this.props.components}
                 />
+                <TableFooterComponent
+                  options={this.options}
+                  page={page}
+                  rowCount={rowCount}
+                  rowsPerPage={rowsPerPage}
+                  changeRowsPerPage={this.changeRowsPerPage}
+                  changePage={this.changePage}
+                />
                 <TableBodyComponent
                   data={displayData}
                   count={rowCount}
